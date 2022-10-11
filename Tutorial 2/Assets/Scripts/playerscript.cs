@@ -8,8 +8,11 @@ public class playerscript : MonoBehaviour
     private Rigidbody2D rd2d;
 
     public float speed;
+
     public Text score;
+
     private int scoreValue = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,18 +25,28 @@ public class playerscript : MonoBehaviour
     {
         float hozMovement = Input.GetAxis("Horizontal");
         float vertMovement = Input.GetAxis("Vertical");
-        
         rd2d.AddForce(new Vector2(hozMovement * speed, vertMovement * speed));
     }
 
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.tag == "Coin")
+       if (collision.collider.tag == "Coin")
         {
             scoreValue += 1;
-            score.Text = scoreValue.ToString();
+            score.text = scoreValue.ToString();
             Destroy(collision.collider.gameObject);
+        }
+
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.collider.tag == "Ground")
+        {
+            if(Input.GetKey(KeyCode.W))
+            {
+                rd2d.AddForce(new Vector2(0,2), ForceMode2D.Impulse);
+            }
         }
     }
 }
