@@ -28,7 +28,7 @@ public class playerscript : MonoBehaviour
     {
         if(collision.collider.tag == "Coin")
         {
-            Destroy(collision.colider.gameObject);
+            Destroy(collision.collider.gameObject);
         }
     }
 }
