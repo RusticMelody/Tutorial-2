@@ -15,11 +15,20 @@ public class playerscript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float hozMovement = Input.GetAxis("Horizontal");
         float vertMovement = Input.GetAxis("Vertical");
         
         rd2d.AddForce(new Vector2(hozMovement * speed, vertMovement * speed));
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.tag == "Coin")
+        {
+            Destroy(collision.colider.gameObject);
+        }
     }
 }
