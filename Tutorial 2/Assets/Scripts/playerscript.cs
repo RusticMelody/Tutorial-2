@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerscript : MonoBehaviour
 {
     private Rigidbody2D rd2d;
 
     public float speed;
-
+    public Text score;
+    private int scoreValue = 0;
     // Start is called before the first frame update
     void Start()
     {
         rd2d = GetComponent<Rigidbody2D>();
+        score.text = scoreValue.ToString();
     }
 
     // Update is called once per frame
@@ -28,6 +31,8 @@ public class playerscript : MonoBehaviour
     {
         if(collision.collider.tag == "Coin")
         {
+            scoreValue += 1;
+            score.Text = scoreValue.ToString();
             Destroy(collision.collider.gameObject);
         }
     }
