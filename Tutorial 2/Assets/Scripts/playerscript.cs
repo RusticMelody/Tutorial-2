@@ -45,7 +45,7 @@ public class playerscript : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.W))
             {
-                rd2d.AddForce(new Vector2(0,2), ForceMode2D.Impulse);
+                rd2d.AddForce(new Vector2(0,4), ForceMode2D.Impulse);
             }
         }
     }
