@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class playerscript : MonoBehaviour
 {
+    private bool facingRight = true;
     private Rigidbody2D rd2d;
 
     public float speed;
@@ -31,8 +32,23 @@ public class playerscript : MonoBehaviour
         float hozMovement = Input.GetAxis("Horizontal");
         float vertMovement = Input.GetAxis("Vertical");
         rd2d.AddForce(new Vector2(hozMovement * speed, vertMovement * speed));
-    }
 
+        if (facingRight == false && hozMovement > 0)
+        {
+        Flip();
+        }
+        else if (facingRight == true && hozMovement < 0)
+        {
+            Flip();
+        }
+    }
+    void Flip()
+   {
+     facingRight = !facingRight;
+     Vector2 Scaler = transform.localScale;
+     Scaler.x = Scaler.x * -1;
+     transform.localScale = Scaler;
+   }
     private void OnCollisionEnter2D(Collision2D collision)
     {
        if (collision.collider.tag == "Coin")
@@ -43,7 +59,7 @@ public class playerscript : MonoBehaviour
         }
         else if (collision.collider.tag == "Enemy")
         {
-            lives = lives - 1;
+            livesValue =- 1;
             lives.text = livesValue.ToString();
             Destroy(collision.collider.gameObject);
         }

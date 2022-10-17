@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Coin
   - Ground
+  - Score
+  - Lives
   layers:
   - Default
   - TransparentFX
