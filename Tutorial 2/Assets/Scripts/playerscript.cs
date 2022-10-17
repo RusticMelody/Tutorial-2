@@ -11,13 +11,18 @@ public class playerscript : MonoBehaviour
 
     public Text score;
 
+    public Text lives;
+
     private int scoreValue = 0;
+
+    private int livesValue = 3;
 
     // Start is called before the first frame update
     void Start()
     {
         rd2d = GetComponent<Rigidbody2D>();
         score.text = scoreValue.ToString();
+        lives.text = livesValue.ToString();
     }
 
     // Update is called once per frame
@@ -36,7 +41,12 @@ public class playerscript : MonoBehaviour
             score.text = scoreValue.ToString();
             Destroy(collision.collider.gameObject);
         }
-
+        else if (collision.collider.tag == "Enemy")
+        {
+            lives = lives - 1;
+            lives.text = livesValue.ToString();
+            Destroy(collision.collider.gameObject);
+        }
     }
 
     void OnCollisionStay2D(Collision2D collision)
