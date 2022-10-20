@@ -87,6 +87,10 @@ public class playerscript : MonoBehaviour
             
             SetLivesText();
         }
+        if (score == 4)
+        {
+            transform.position = new Vector2(150.0f, 2.0f);
+        }
     }
 
     void OnCollisionStay2D(Collision2D collision)
