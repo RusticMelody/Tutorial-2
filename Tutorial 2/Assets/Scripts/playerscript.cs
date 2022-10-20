@@ -11,12 +11,14 @@ public class playerscript : MonoBehaviour
     public float speed;
 
     public Text score;
-
+    public GameObject winTextObject;
+    public GameObject loseTextObject;
     public Text lives;
 
     private int scoreValue = 0;
 
     private int livesValue = 3;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,8 @@ public class playerscript : MonoBehaviour
         rd2d = GetComponent<Rigidbody2D>();
         score.text = scoreValue.ToString();
         lives.text = livesValue.ToString();
+        winTextObject.SetActive(false);
+        loseTextObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -35,7 +39,7 @@ public class playerscript : MonoBehaviour
 
         if (facingRight == false && hozMovement > 0)
         {
-        Flip();
+            Flip();
         }
         else if (facingRight == true && hozMovement < 0)
         {
@@ -56,10 +60,12 @@ public class playerscript : MonoBehaviour
             scoreValue += 1;
             score.text = scoreValue.ToString();
             Destroy(collision.collider.gameObject);
+
+
         }
         else if (collision.collider.tag == "Enemy")
         {
-            livesValue =- 1;
+            livesValue -= 1;
             lives.text = livesValue.ToString();
             Destroy(collision.collider.gameObject);
         }
