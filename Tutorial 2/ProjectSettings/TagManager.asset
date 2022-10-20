@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Score
   - Lives
+  - Enemy
   layers:
   - Default
   - TransparentFX
