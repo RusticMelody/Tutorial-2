@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
+using TMPro;
 
 public class playerscript : MonoBehaviour
 {
@@ -10,24 +11,30 @@ public class playerscript : MonoBehaviour
 
     public float speed;
 
-    public Text score;
+    public TextMeshProUGUI scoreText;
+
+    public TextMeshProUGUI livesText;
+
     public GameObject winTextObject;
+
     public GameObject loseTextObject;
-    public Text lives;
 
-    private int scoreValue = 0;
+    private int score = 0;
 
-    private int livesValue = 3;
-
+    private int lives = 3;
 
     // Start is called before the first frame update
     void Start()
     {
         rd2d = GetComponent<Rigidbody2D>();
-        score.text = scoreValue.ToString();
-        lives.text = livesValue.ToString();
+
         winTextObject.SetActive(false);
+
+        SetScoreText();
+
         loseTextObject.SetActive(false);
+
+        SetLivesText();
     }
 
     // Update is called once per frame
@@ -49,25 +56,36 @@ public class playerscript : MonoBehaviour
     void Flip()
    {
      facingRight = !facingRight;
+
      Vector2 Scaler = transform.localScale;
+
      Scaler.x = Scaler.x * -1;
+
      transform.localScale = Scaler;
    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
        if (collision.collider.tag == "Coin")
         {
-            scoreValue += 1;
-            score.text = scoreValue.ToString();
+            score += 1;
+
+            collision.gameObject.SetActive(false);
+
             Destroy(collision.collider.gameObject);
+
+            SetScoreText();
 
 
         }
         else if (collision.collider.tag == "Enemy")
         {
-            livesValue -= 1;
-            lives.text = livesValue.ToString();
+            lives -= 1;
+            
+            collision.gameObject.SetActive(false);
+
             Destroy(collision.collider.gameObject);
+            
+            SetLivesText();
         }
     }
 
@@ -79,6 +97,27 @@ public class playerscript : MonoBehaviour
             {
                 rd2d.AddForce(new Vector2(0,4), ForceMode2D.Impulse);
             }
+        }
+    }
+    void SetScoreText()
+    {
+        scoreText.text = "Score: " + score.ToString();
+
+        if (score >= 8)
+        {
+            // Set the text value of your 'winText'
+            winTextObject.SetActive(true);
+        }
+    }
+    void SetLivesText()
+    {
+        livesText.text = "Lives: " + lives.ToString();
+
+        if (lives <= 0)
+        {
+            loseTextObject.SetActive(true);
+
+            Destroy(gameObject);
         }
     }
 }
