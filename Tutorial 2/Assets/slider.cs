@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sliding : MonoBehaviour
+public class slider : MonoBehaviour
 {
     // Transforms to act as start and end markers for the journey.
     public Transform startMarker;
