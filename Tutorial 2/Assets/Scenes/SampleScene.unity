@@ -6467,9 +6467,9 @@ MonoBehaviour:
   livesText: {fileID: 1314368931}
   winTextObject: {fileID: 288130250}
   loseTextObject: {fileID: 714725289}
-  musicClipOne: {fileID: 0}
+  musicClipOne: {fileID: 8300000, guid: 9e1050166b2d02d4d9e759783f4fe1e7, type: 3}
   musicClipTwo: {fileID: 0}
-  musicSource: {fileID: 0}
+  musicSource: {fileID: 1164881216}
 --- !u!50 &1164881212
 Rigidbody2D:
   serializedVersion: 4

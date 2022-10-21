@@ -53,10 +53,6 @@ public class playerscript : MonoBehaviour
 
         {
 
-          musicSource.clip = musicClipOne;
-
-          musicSource.Play();
-
           anim.SetInteger("State", 1);
 
          }
@@ -64,8 +60,6 @@ public class playerscript : MonoBehaviour
      if (Input.GetKeyUp(KeyCode.W))
 
         {
-
-          musicSource.Stop();
 
           anim.SetInteger("State", 0);
 
@@ -147,8 +141,6 @@ public class playerscript : MonoBehaviour
             Destroy(collision.collider.gameObject);
 
             SetScoreText();
-
-
         }
         else if (collision.collider.tag == "Enemy")
         {
@@ -180,9 +172,10 @@ public class playerscript : MonoBehaviour
     {
         scoreText.text = "Score: " + score.ToString();
 
-        if (score >= 8)
+        if (score == 8)
         {
-            // Set the text value of your 'winText'
+            musicSource.clip = musicClipOne;
+            musicSource.Play();
             winTextObject.SetActive(true);
         }
     }
