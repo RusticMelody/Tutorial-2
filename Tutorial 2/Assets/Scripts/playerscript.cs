@@ -53,7 +53,7 @@ public class playerscript : MonoBehaviour
 
         {
 
-          anim.SetInteger("State", 1);
+          anim.SetInteger("State", 2);
 
          }
 
@@ -65,33 +65,26 @@ public class playerscript : MonoBehaviour
 
          }
 
-     if (Input.GetKeyDown(KeyCode.R))
+     if (Input.GetKeyDown(KeyCode.A))
 
         {
 
-          musicSource.clip = musicClipTwo;
-
-          musicSource.Play();
-
-          anim.SetInteger("State", 2);
+          anim.SetInteger("State", 1);
 
          }
 
-     if (Input.GetKeyUp(KeyCode.R))
+     if (Input.GetKeyUp(KeyCode.A))
 
         {
-
-          musicSource.Stop();
 
           anim.SetInteger("State", 0);
 
          }
 
-     if (Input.GetKeyDown(KeyCode.L))
+     if (Input.GetKeyDown(KeyCode.D))
 
         {
-
-          musicSource.loop = true;
+            anim.SetInteger("State", 1);
 
          }
 
@@ -99,7 +92,7 @@ public class playerscript : MonoBehaviour
 
         {
 
-          musicSource.loop = false;
+          anim.SetInteger("State", 0);
 
         }
     }
@@ -183,8 +176,9 @@ public class playerscript : MonoBehaviour
     {
         livesText.text = "Lives: " + lives.ToString();
 
-        if (lives <= 0)
+        if (lives == 0)
         {
+
             loseTextObject.SetActive(true);
 
             Destroy(gameObject);
