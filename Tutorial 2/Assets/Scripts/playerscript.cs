@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using TMPro;
 
 public class playerscript : MonoBehaviour
@@ -23,6 +22,14 @@ public class playerscript : MonoBehaviour
 
     private int lives = 3;
 
+    public AudioClip musicClipOne;
+
+    public AudioClip musicClipTwo;
+
+    public AudioSource musicSource;
+
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,8 +42,74 @@ public class playerscript : MonoBehaviour
         loseTextObject.SetActive(false);
 
         SetLivesText();
+
+        anim = GetComponent<Animator>();
+
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+
+        {
+
+          musicSource.clip = musicClipOne;
+
+          musicSource.Play();
+
+          anim.SetInteger("State", 1);
+
+         }
+
+     if (Input.GetKeyUp(KeyCode.W))
+
+        {
+
+          musicSource.Stop();
+
+          anim.SetInteger("State", 0);
+
+         }
+
+     if (Input.GetKeyDown(KeyCode.R))
+
+        {
+
+          musicSource.clip = musicClipTwo;
+
+          musicSource.Play();
+
+          anim.SetInteger("State", 2);
+
+         }
+
+     if (Input.GetKeyUp(KeyCode.R))
+
+        {
+
+          musicSource.Stop();
+
+          anim.SetInteger("State", 0);
+
+         }
+
+     if (Input.GetKeyDown(KeyCode.L))
+
+        {
+
+          musicSource.loop = true;
+
+         }
+
+     if (Input.GetKeyUp(KeyCode.L))
+
+        {
+
+          musicSource.loop = false;
+
+        }
+    }
+    
     // Update is called once per frame
     void FixedUpdate()
     {
