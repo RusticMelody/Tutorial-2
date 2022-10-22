@@ -88,7 +88,7 @@ public class playerscript : MonoBehaviour
 
          }
 
-     if (Input.GetKeyUp(KeyCode.L))
+     if (Input.GetKeyUp(KeyCode.D))
 
         {
 
@@ -147,6 +147,7 @@ public class playerscript : MonoBehaviour
         }
         if (score == 4)
         {
+            addlives();
             transform.position = new Vector2(150.0f, 2.0f);
         }
     }
@@ -167,6 +168,7 @@ public class playerscript : MonoBehaviour
 
         if (score == 8)
         {
+
             musicSource.clip = musicClipOne;
             musicSource.Play();
             winTextObject.SetActive(true);
@@ -178,10 +180,16 @@ public class playerscript : MonoBehaviour
 
         if (lives == 0)
         {
-
+            
             loseTextObject.SetActive(true);
 
             Destroy(gameObject);
         }
+    }
+    void addlives()
+    {
+        livesText.text = "Lives: " + lives.ToString();
+        lives = 3;
+        SetLivesText();
     }
 }
